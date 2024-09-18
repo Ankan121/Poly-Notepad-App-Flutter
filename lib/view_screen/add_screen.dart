@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:poly_notepad_app/constant/colors.dart';
 import 'package:poly_notepad_app/constant/text.dart';
 
 class Add_Screen extends StatefulWidget {
@@ -41,9 +42,9 @@ class _Add_ScreenState extends State<Add_Screen> {
     final TextStyle? small = TextFormate(colors: Colors.white).textSmallFormate(context);
 
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: AppColor.bodycolor,
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: AppColor.appbarcolor,
         title: Text('Add',style: large ),
         centerTitle: true,
       ),
@@ -71,7 +72,7 @@ class _Add_ScreenState extends State<Add_Screen> {
                           child: TextFormField(
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
+                                borderSide: BorderSide(color: AppColor.whiteall),
                                 borderRadius: BorderRadius.circular(40.r),
                               ),
 
@@ -106,7 +107,7 @@ class _Add_ScreenState extends State<Add_Screen> {
                           child: TextFormField(
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
+                                borderSide: BorderSide(color: AppColor.whiteall),
                                 borderRadius: BorderRadius.circular(40.r),
                               ),
 
@@ -135,7 +136,7 @@ class _Add_ScreenState extends State<Add_Screen> {
                         Center(
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
+                                backgroundColor: AppColor.whiteall,
                                 shadowColor: Colors.greenAccent,
                                 elevation: 3,
                                 fixedSize: Size(306.w, 48.h), // specify width, height

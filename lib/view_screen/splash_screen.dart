@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:poly_notepad_app/constant/colors.dart';
 import 'package:poly_notepad_app/navigation_bar.dart';
 
 
@@ -27,7 +28,7 @@ class _Splash_ScreenState extends State<Splash_Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
-      body: Center(child: Text('Poly Notepad App',style: context.textTheme.titleLarge?.copyWith(color: Colors.white,fontSize: 40.sp),),),
+      body: Center(child: Text('Poly Notepad App',style: context.textTheme.titleLarge?.copyWith(color: AppColor.whiteall,fontSize: 40.sp),),),
     );
   }
 }

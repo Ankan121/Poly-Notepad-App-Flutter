@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:poly_notepad_app/profile_Screen.dart';
-import 'add_screen.dart';
-import 'home_screen.dart';
+import 'package:poly_notepad_app/constant/colors.dart';
+import 'package:poly_notepad_app/view_screen/profile_Screen.dart';
+import 'view_screen/add_screen.dart';
+import 'view_screen/home_screen.dart';
 
 
 class Navigation_Var extends StatefulWidget {
@@ -30,13 +31,13 @@ class _MyHomePageState extends State<Navigation_Var> {
           });
         },
         type: BottomNavigationBarType.shifting, // Shifting
-        selectedItemColor: Colors.white,
+        selectedItemColor: AppColor.whiteall,
         unselectedItemColor: Colors.grey,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             label: 'Home',
-            backgroundColor: Colors.blue,
+            backgroundColor: AppColor.navigationbarcolor,
           ),
 
           BottomNavigationBarItem(

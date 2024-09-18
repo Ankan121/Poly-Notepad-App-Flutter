@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'constant/text.dart';
+import 'package:poly_notepad_app/constant/colors.dart';
+import '../constant/text.dart';
 
 class Profile_Screen extends StatefulWidget {
   const Profile_Screen({super.key});
@@ -28,8 +29,9 @@ class _Profile_ScreenState extends State<Profile_Screen> {
     final screenHeight = mediaQuery.size.height;
 
     return Scaffold(
+      backgroundColor: AppColor.whiteall,
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: AppColor.appbarcolor,
         title: Text('Profile',style: largewhite),
         centerTitle: true,
       ),
@@ -38,7 +40,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
           Container(
             height: screenHeight * 0.4,
             width: screenWidth * 1,
-            color: Colors.blue,
+            color: AppColor.bodycolor,
 
           ),
           Positioned(
@@ -73,7 +75,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                 //color: Colors.white,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.r),
-                  color: Colors.white,
+                  color: AppColor.whiteall,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),

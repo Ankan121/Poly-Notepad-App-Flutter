@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:poly_notepad_app/splash_screen.dart';
+import 'package:poly_notepad_app/view_screen/splash_screen.dart';
 
 void main(){
   runApp(myapp());

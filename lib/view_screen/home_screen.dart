@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import 'constant/text.dart';
+import 'package:poly_notepad_app/constant/colors.dart';
+import '../constant/text.dart';
 
 
 
@@ -29,10 +28,10 @@ class _Home_ScreenState extends State<Home_Screen> {
 
 
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: AppColor.bodycolor,
       appBar: AppBar(
         elevation: 5,
-        backgroundColor: Colors.blue,
+        backgroundColor: AppColor.appbarcolor,
         title: Text("Note Pad",style: context.textTheme.titleLarge?.copyWith(color: Colors.white),),
         centerTitle: true,
         ),
