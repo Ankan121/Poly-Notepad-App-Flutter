@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poly_notepad_app/constant/colors.dart';
 import '../constant/text.dart';
+import 'edite_screen.dart';
 
 
 
@@ -45,7 +46,9 @@ class _Home_ScreenState extends State<Home_Screen> {
             child: ListTile(
               title: Text('Title',style: context.textTheme.titleLarge?.copyWith(color: Colors.black, )),
               subtitle: Text('Discription',style: mediumblack,),
-              trailing: Icon(Icons.edit),
+              trailing: IconButton( onPressed: () {
+                Get.to<edite_Screen>(edite_Screen());
+              }, icon: Icon(Icons.edit),),
               leading: CircleAvatar(
                   backgroundColor: Colors.blue,
                   child: Text('T',style: context.textTheme.titleMedium?.copyWith(color: Colors.white))),
