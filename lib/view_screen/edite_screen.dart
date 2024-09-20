@@ -6,6 +6,7 @@ import 'package:poly_notepad_app/constant/colors.dart';
 import 'package:poly_notepad_app/constant/text.dart';
 import 'package:poly_notepad_app/db_service/db_herper.dart';
 
+
 class edite_Screen extends StatefulWidget {
   const edite_Screen({super.key});
 
@@ -146,7 +147,16 @@ class _edite_ScreenState extends State<edite_Screen> {
                                 fixedSize: Size(306.w, 48.h), // specify width, height
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20.r,))),
-                            onPressed: DbHelper.new,
+                            onPressed: ()async {
+                              DbHelper dbHelper = DbHelper(); // Create an instance of DbHelper
+                              await dbHelper.insertData(); // Call insertData to insert and print the data
+                              print('Successs added data');
+                              Get.snackbar(
+                                'Title',
+                                'Successfully Update',
+                                backgroundColor: AppColor.whiteall
+                              );
+                            },
                             //_submitForm, // Call the _submitForm function when the button is pressed
                             child: Text('Update',style: context.textTheme.titleLarge?.copyWith(color: Colors.blue)), // Text on the button
                           ),

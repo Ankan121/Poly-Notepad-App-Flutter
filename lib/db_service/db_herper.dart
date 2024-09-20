@@ -27,7 +27,16 @@ class DbHelper{
       "name": "Flutter demo",
       "age": 22,
       "address": "dhaka 1207",
-      "num": 12.5
+      "num": 12.5,
     });
+    // Fetch and print data
+    List<Map<String, dynamic>> data = await db?.query("MyProfile") ?? [];
+
+    // Print the data
+    data.forEach((row) {
+      print("Name: ${row['name']}, Age: ${row['age']}, Address: ${row['address']}, Num: ${row['num']}");
+    });
+
+
   }
 }
