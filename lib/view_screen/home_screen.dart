@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:poly_notepad_app/constant/colors.dart';
+import 'package:poly_notepad_app/db_service/db_herper.dart';
 import '../constant/text.dart';
 import 'edite_screen.dart';
 
@@ -16,9 +17,20 @@ class Home_Screen extends StatefulWidget {
 
 class _Home_ScreenState extends State<Home_Screen> {
 
-  //static TextStyle? textStyle = context.textTheme.titleLarge?.copyWith();
+  List items = [];
 
-  List item = [1,2,3,4,5];
+  void initState(){
+    readItemsDatabase();
+    super.initState();
+  }
+
+  void readItemsDatabase()async{
+    final allnotes = await DbHelper().readItems();
+    print(allnotes);
+    setState(() {
+      items.addAll(allnotes);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +49,15 @@ class _Home_ScreenState extends State<Home_Screen> {
         centerTitle: true,
         ),
       body: ListView.builder(
-        itemCount: item.length,
+        itemCount: items.length,
         itemBuilder: ( context,  index) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Card(
             elevation: 5,
             child: ListTile(
-              title: Text('Title',style: context.textTheme.titleLarge?.copyWith(color: Colors.black, )),
-              subtitle: Text('Discription',style: mediumblack,),
+              title: Text('${items[index]['title']}',style: context.textTheme.titleLarge?.copyWith(color: Colors.black, )),
+              subtitle: Text('${items[index]['description']}',style: mediumblack,),
               trailing: IconButton( onPressed: () {
                 Get.to<edite_Screen>(edite_Screen());
               }, icon: Icon(Icons.edit),),

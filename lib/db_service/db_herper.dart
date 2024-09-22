@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -14,29 +15,38 @@ class DbHelper{
     Directory directory = await getApplicationDocumentsDirectory();
     String path = join(directory.path, "mydatabase.db");
     _database =
-    await openDatabase(path, version: 1, onCreate: (db, version) async {
+    await openDatabase(path, version: 2, onCreate: (db, version) async {
       await db.execute(
-          'CREATE TABLE MyProfile (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, num REAL, address TEXT)');
+          'CREATE TABLE Notes (id INTEGER PRIMARY KEY, title TEXT, description TEXT)');
     });
     return _database;
   }
 
-  insertData() async {
+  // insertData() async {
+  //   Database? db = await database;
+  //   db?.insert("MyProfile", {
+  //     "name": "Flutter demo",
+  //     "age": 22,
+  //     "address": "dhaka 1207",
+  //     "num": 12.5,
+  //   });
+  // }
+
+
+  Future<void> addnote(context, String? title, String? description) async {
     Database? db = await database;
-    db?.insert("MyProfile", {
-      "name": "Flutter demo",
-      "age": 22,
-      "address": "dhaka 1207",
-      "num": 12.5,
+    db?.insert("Notes", {
+      "title": title,
+      "description": description,
     });
-    // Fetch and print data
-    List<Map<String, dynamic>> data = await db?.query("MyProfile") ?? [];
-
-    // Print the data
-    data.forEach((row) {
-      print("Name: ${row['name']}, Age: ${row['age']}, Address: ${row['address']}, Num: ${row['num']}");
-    });
-
-
+    var snackBar = SnackBar(content: Text('Title Added successfully '));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+
+  Future<dynamic> readItems()async{
+    Database? db = await database;
+    final list = db?.query('Notes');
+    return list;
+  }
+
 }

@@ -15,27 +15,6 @@ class edite_Screen extends StatefulWidget {
 }
 
 class _edite_ScreenState extends State<edite_Screen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); // A key for managing the form
-  String _fast_name = ''; // Variable to store the entered name
-  String _last_name = '';
-  String _email = ''; // Variable to store the entered email
-  String _passwored = '';
-  String _re_password = '';
-
-  void _submitForm() {
-    // Check if the form is valid
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      //Get.to(ApplyScreen());
-      print('Name: $_fast_name'); // Print the name
-      print('Mobile Number: $_last_name'); // Print the email
-      print("Email ID/Phone Number: $_email" );
-      print("Password: $_passwored");
-      print("Re-enter Password: $_re_password");
-    }
-  }
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -60,7 +39,6 @@ class _edite_ScreenState extends State<edite_Screen> {
           children: [
 
             Form(
-              key: _formKey, // Associate the form key with this Form widget
               child: Padding(
                 padding: EdgeInsets.all(0.0),
                 child: SingleChildScrollView(
@@ -88,17 +66,7 @@ class _edite_ScreenState extends State<edite_Screen> {
                               labelStyle: TextStyle(
                                   color: Colors.white
                               ),
-
                             ), // Label for the name field
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Please enter your Fast Name.'; // Return an error message if the name is empty
-                              }
-                              return null; // Return null if the name is valid
-                            },
-                            onSaved: (value) {
-                              _fast_name = value!; // Save the entered name
-                            },
                           ),
                         ),
 
@@ -123,17 +91,7 @@ class _edite_ScreenState extends State<edite_Screen> {
                               labelStyle: TextStyle(
                                   color: Colors.white
                               ),
-
                             ), // Label for the name field
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Please enter your Fast Name.'; // Return an error message if the name is empty
-                              }
-                              return null; // Return null if the name is valid
-                            },
-                            onSaved: (value) {
-                              _fast_name = value!; // Save the entered name
-                            },
                           ),
                         ),
 
@@ -147,17 +105,7 @@ class _edite_ScreenState extends State<edite_Screen> {
                                 fixedSize: Size(306.w, 48.h), // specify width, height
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20.r,))),
-                            onPressed: ()async {
-                              DbHelper dbHelper = DbHelper(); // Create an instance of DbHelper
-                              await dbHelper.insertData(); // Call insertData to insert and print the data
-                              print('Successs added data');
-                              Get.snackbar(
-                                'Title',
-                                'Successfully Update',
-                                backgroundColor: AppColor.whiteall
-                              );
-                            },
-                            //_submitForm, // Call the _submitForm function when the button is pressed
+                            onPressed: () {},
                             child: Text('Update',style: context.textTheme.titleLarge?.copyWith(color: Colors.blue)), // Text on the button
                           ),
                         ),
