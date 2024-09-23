@@ -107,7 +107,7 @@ class _Add_ScreenState extends State<Add_Screen> {
                               backgroundColor: AppColor.whiteall,
                               shadowColor: Colors.greenAccent,
                               elevation: 3,
-                              fixedSize: Size(306.w, 48.h), // specify width, height
+                              fixedSize: Size(306.w, 35.h), // specify width, height
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20.r,))),
                           onPressed: ()async{
