@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:poly_notepad_app/constant/colors.dart';
 import 'package:poly_notepad_app/constant/text.dart';
 import 'package:poly_notepad_app/db_service/db_herper.dart';
+import 'package:poly_notepad_app/view_screen/home_screen/home_screen.dart';
 
 class Add_Screen extends StatefulWidget {
   const Add_Screen({super.key});
@@ -29,6 +30,9 @@ class _Add_ScreenState extends State<Add_Screen> {
       backgroundColor: AppColor.bodycolor,
       appBar: AppBar(
         backgroundColor: AppColor.appbarcolor,
+        leading: IconButton(onPressed: (){
+          Get.offAll<Home_Screen>(Home_Screen());
+        }, icon: Icon(Icons.arrow_back_rounded,color: Colors.white,)),
         title: Text('Add',style: large ),
         centerTitle: true,
       ),
@@ -70,7 +74,7 @@ class _Add_ScreenState extends State<Add_Screen> {
                         ),
                       ),
 
-                      SizedBox(height: 40.h,),
+                      SizedBox(height: 25.h,),
 
                       Padding(
                         padding: const EdgeInsets.all(8.0),

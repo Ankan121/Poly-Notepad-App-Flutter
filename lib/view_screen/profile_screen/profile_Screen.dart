@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:poly_notepad_app/constant/colors.dart';
-import '../constant/text.dart';
+import 'package:poly_notepad_app/view_screen/home_screen/home_screen.dart';
+import '../../constant/text.dart';
 
 class Profile_Screen extends StatefulWidget {
   const Profile_Screen({super.key});
@@ -32,6 +33,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
       backgroundColor: AppColor.whiteall,
       appBar: AppBar(
         backgroundColor: AppColor.appbarcolor,
+        leading: IconButton(onPressed: (){Get.offAll<Home_Screen>(Home_Screen());}, icon: Icon(Icons.arrow_back_rounded,color: Colors.white,)),
         title: Text('Profile',style: largewhite),
         centerTitle: true,
       ),

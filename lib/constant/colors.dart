@@ -7,4 +7,5 @@ class AppColor{
   static Color bodycolor = Colors.blue;
   static Color navigationbarcolor = Colors.blue;
   static Color whiteall = Colors.white;
+  static Color blackall = Colors.black;
 }

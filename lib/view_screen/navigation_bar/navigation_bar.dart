@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:poly_notepad_app/constant/colors.dart';
-import 'package:poly_notepad_app/view_screen/profile_Screen.dart';
-import 'view_screen/add_screen.dart';
-import 'view_screen/home_screen.dart';
+import 'package:poly_notepad_app/view_screen/profile_screen/profile_Screen.dart';
+import '../Add_Note_Screen/add_screen.dart';
+import '../home_screen/home_screen.dart';
 
 
 class Navigation_Var extends StatefulWidget {

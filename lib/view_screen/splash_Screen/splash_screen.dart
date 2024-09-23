@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:poly_notepad_app/constant/colors.dart';
-import 'package:poly_notepad_app/navigation_bar.dart';
+import 'package:poly_notepad_app/view_screen/navigation_bar/navigation_bar.dart';
+import 'package:poly_notepad_app/view_screen/home_screen/home_screen.dart';
 
 
 class Splash_Screen extends StatefulWidget {
@@ -18,7 +19,7 @@ class Splash_Screen extends StatefulWidget {
 class _Splash_ScreenState extends State<Splash_Screen> {
   void initState(){
     Timer(Duration(seconds: 2), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Navigation_Var()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const Home_Screen()));
 
     });
 

@@ -15,6 +15,11 @@ class edite_Screen extends StatefulWidget {
 }
 
 class _edite_ScreenState extends State<edite_Screen> {
+
+  final titleEditingController = TextEditingController();
+  final descriptionEditController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -28,7 +33,7 @@ class _edite_ScreenState extends State<edite_Screen> {
         backgroundColor: AppColor.appbarcolor,
         leading: IconButton(onPressed: (){
           Get.back();
-        }, icon: Icon(Icons.arrow_back_rounded,color: AppColor.whiteall,)),
+            }, icon: Icon(Icons.arrow_back_rounded,color: AppColor.whiteall,)),
         title: Text('Edite',style: large ),
         centerTitle: true,
       ),
@@ -53,6 +58,7 @@ class _edite_ScreenState extends State<edite_Screen> {
                         ),
                         Container(
                           child: TextFormField(
+                            controller: titleEditingController,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: AppColor.whiteall),
@@ -70,7 +76,7 @@ class _edite_ScreenState extends State<edite_Screen> {
                           ),
                         ),
 
-                        SizedBox(height: 40.h,),
+                        SizedBox(height: 25.h,),
 
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -78,6 +84,7 @@ class _edite_ScreenState extends State<edite_Screen> {
                         ),
                         Container(
                           child: TextFormField(
+                            controller: descriptionEditController,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: AppColor.whiteall),
@@ -105,7 +112,14 @@ class _edite_ScreenState extends State<edite_Screen> {
                                 fixedSize: Size(306.w, 48.h), // specify width, height
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20.r,))),
-                            onPressed: () {},
+                            onPressed: ()async{
+                              if(titleEditingController.text.isEmpty || descriptionEditController.text.isEmpty){
+                                var snackBar = const SnackBar(content: Text('Please All field are required !'));
+                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              }else{
+                                await DbHelper().updateItems();
+                              }
+                            },
                             child: Text('Update',style: context.textTheme.titleLarge?.copyWith(color: Colors.blue)), // Text on the button
                           ),
                         ),

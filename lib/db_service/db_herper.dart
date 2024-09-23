@@ -49,4 +49,10 @@ class DbHelper{
     return list;
   }
 
+  Future<dynamic> updateItems()async{
+    Database? db = await database;
+    final list = db?.update('Notes', {"title": "New Title", "description": "New Description"});
+    return list;
+  }
+
 }
