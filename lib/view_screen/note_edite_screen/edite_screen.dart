@@ -43,88 +43,85 @@ class _edite_ScreenState extends State<edite_Screen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            Form(
-              child: Padding(
-                padding: EdgeInsets.all(0.0),
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Title",style: large,),
-                        ),
-                        Container(
-                          child: TextFormField(
-                            controller: titleEditingController,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColor.whiteall),
-                                borderRadius: BorderRadius.circular(40.r),
-                              ),
+            Padding(
+              padding: EdgeInsets.all(0.0),
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Title",style: large,),
+                      ),
+                      Container(
+                        child: TextFormField(
+                          minLines: 1,
+                          maxLines: null,
+                          controller: titleEditingController,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: AppColor.whiteall),
+                              borderRadius: BorderRadius.circular(10.r),
+                            ),
 
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(40.r),
-                              ),
-                              labelText: "Enter Title",
-                              labelStyle: TextStyle(
-                                  color: Colors.white
-                              ),
-                            ), // Label for the name field
-                          ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.r),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                            labelText: "Enter Title",
+                            labelStyle: TextStyle(
+                                color: Colors.white
+                            ),
+                          ), // Label for the name field
                         ),
+                      ),
 
-                        SizedBox(height: 25.h,),
+                      SizedBox(height: 25.h,),
 
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Description",style: context.textTheme.titleLarge?.copyWith(color: Colors.white)),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Description",style: context.textTheme.titleLarge?.copyWith(color: Colors.white)),
+                      ),
+                      Container(
+                        child: TextFormField(
+                          minLines: 1,
+                          maxLines: null,
+                          controller: descriptionEditController,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: AppColor.whiteall),
+                              borderRadius: BorderRadius.circular(1.r),
+                            ),
+
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(1.r),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 10.0),
+                            labelText: "Enter Description",
+                            labelStyle: TextStyle(
+                                color: Colors.white
+                            ),
+                          ), // Label for the name field
                         ),
-                        Container(
-                          child: TextFormField(
-                            controller: descriptionEditController,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColor.whiteall),
-                                borderRadius: BorderRadius.circular(40.r),
-                              ),
+                      ),
 
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(40.r),
-                              ),
-                              labelText: "Enter Description",
-                              labelStyle: TextStyle(
-                                  color: Colors.white
-                              ),
-                            ), // Label for the name field
-                          ),
+                      SizedBox(height: 20.0.h),
+                      Center(
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColor.whiteall,
+                              shadowColor: Colors.greenAccent,
+                              elevation: 3,
+                              fixedSize: Size(306.w, 35.h), // specify width, height
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.r,))),
+                          onPressed: (){},
+                          child: Text('Save',style: context.textTheme.titleLarge?.copyWith(color: Colors.blue)), // Text on the button
                         ),
-
-                        SizedBox(height: 20.0.h),
-                        Center(
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColor.whiteall,
-                                shadowColor: Colors.greenAccent,
-                                elevation: 3,
-                                fixedSize: Size(306.w, 48.h), // specify width, height
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20.r,))),
-                            onPressed: ()async{
-                              if(titleEditingController.text.isEmpty || descriptionEditController.text.isEmpty){
-                                var snackBar = const SnackBar(content: Text('Please All field are required !'));
-                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                              }else{
-                                await DbHelper().updateItems();
-                              }
-                            },
-                            child: Text('Update',style: context.textTheme.titleLarge?.copyWith(color: Colors.blue)), // Text on the button
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),

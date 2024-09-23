@@ -56,16 +56,19 @@ class _Add_ScreenState extends State<Add_Screen> {
                       ),
                       Container(
                         child: TextFormField(
+                          minLines: 1,
+                          maxLines: null,
                           controller: titleEditingController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: AppColor.whiteall),
-                              borderRadius: BorderRadius.circular(40.r),
+                              borderRadius: BorderRadius.circular(10.r),
                             ),
 
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40.r),
+                              borderRadius: BorderRadius.circular(10.r),
                             ),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                             labelText: "Enter Title",
                             labelStyle: TextStyle(
                                 color: Colors.white
@@ -82,16 +85,19 @@ class _Add_ScreenState extends State<Add_Screen> {
                       ),
                       Container(
                         child: TextFormField(
+                          minLines: 1,
+                          maxLines: null,
                           controller: descriptionEditController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: AppColor.whiteall),
-                              borderRadius: BorderRadius.circular(40.r),
+                              borderRadius: BorderRadius.circular(1.r),
                             ),
 
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40.r),
+                              borderRadius: BorderRadius.circular(1.r),
                             ),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 10.0),
                             labelText: "Enter Description",
                             labelStyle: TextStyle(
                                 color: Colors.white

@@ -84,7 +84,25 @@ class _Home_ScreenState extends State<Home_Screen> {
         title: Text("Note Pad",style: context.textTheme.titleLarge?.copyWith(color: Colors.white),),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: (){Get.to<Profile_Screen>(Profile_Screen());}, icon: Icon(Icons.account_circle_outlined)),
+          IconButton(onPressed: (){Get.to<Profile_Screen>(Profile_Screen());},
+              icon: Container(
+                width: 35, // ছবির প্রস্থ
+                height: 35, // ছবির উচ্চতা
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.white, width: 2.0), // বর্ডার কালার এবং পুরুত্ব
+                ),
+                child: ClipOval( // ছবি ক্লিপ করার জন্য
+                  child: Image.network(
+                    'https://scontent.fdac110-1.fna.fbcdn.net/v/t39.30808-1/421750988_913338270136654_635347076248654908_n.jpg?stp=dst-jpg_s200x200&_nc_cat=111&ccb=1-7&_nc_sid=50d2ac&_nc_ohc=lT0F270Zj6sQ7kNvgGrOmpn&_nc_ht=scontent.fdac110-1.fna&_nc_gid=AFadN_OLp_7XT6xCbiSfBjh&oh=00_AYB3F25DP5PmWCOBX8eylMQTEh_g-qz3OFNWdVjuWte0DQ&oe=66F217E6',
+                    width: 35, // ছবির প্রস্থ
+                    height: 35, // ছবির উচ্চতা
+                    fit: BoxFit.cover, // ছবি কভার ফিটিং
+                  ),
+                ),
+              ),
+                //iconSize: 10,
+          ),
         ],
         ),
       drawer: const Drawer_Screen(),
@@ -117,7 +135,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                       subtitle: Text('${items[index]['description']}',style: mediumblack,maxLines: 1, overflow: TextOverflow.ellipsis),
                       trailing: IconButton( onPressed: () {
                         Get.to<edite_Screen>(edite_Screen());
-                      }, icon: Icon(Icons.edit),),
+                        }, icon: Icon(Icons.edit),),
                       leading: Container(
                         padding: EdgeInsets.all(4.0), // বর্ডারের পুরুত্বের জন্য মার্জিন
                         decoration: BoxDecoration(
