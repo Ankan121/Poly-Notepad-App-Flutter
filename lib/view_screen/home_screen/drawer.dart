@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:poly_notepad_app/constant/image.dart';
 import 'package:poly_notepad_app/view_screen/Add_Note_Screen/add_screen.dart';
 import 'package:poly_notepad_app/view_screen/profile_screen/profile_Screen.dart';
 
@@ -40,7 +41,7 @@ class _Drawer_ScreenState extends State<Drawer_Screen> {
               backgroundColor: Colors.white,
               child: CircleAvatar(
                   radius: 35,
-                  backgroundImage:  NetworkImage('https://scontent.fdac110-1.fna.fbcdn.net/v/t39.30808-1/421750988_913338270136654_635347076248654908_n.jpg?stp=dst-jpg_s200x200&_nc_cat=111&ccb=1-7&_nc_sid=50d2ac&_nc_ohc=lT0F270Zj6sQ7kNvgGrOmpn&_nc_ht=scontent.fdac110-1.fna&_nc_gid=AFadN_OLp_7XT6xCbiSfBjh&oh=00_AYB3F25DP5PmWCOBX8eylMQTEh_g-qz3OFNWdVjuWte0DQ&oe=66F217E6',)
+                  backgroundImage:  ImagesClass.imagecoustom.image,
               ),
             ),
           ),

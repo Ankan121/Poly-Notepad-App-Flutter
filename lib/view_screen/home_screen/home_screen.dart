@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:poly_notepad_app/constant/colors.dart';
+import 'package:poly_notepad_app/constant/image.dart';
 import 'package:poly_notepad_app/db_service/db_herper.dart';
 import 'package:poly_notepad_app/view_screen/Add_Note_Screen/add_screen.dart';
 import 'package:poly_notepad_app/view_screen/home_screen/drawer.dart';
@@ -31,7 +32,12 @@ class _Home_ScreenState extends State<Home_Screen> {
     super.initState();
   }
 
-  void readItemsDatabase()async{
+  Future<void> readItemsDatabase()async{
+
+    setState(() {
+      items = [];
+    });
+
     final allnotes = await DbHelper().readItems();
     print(allnotes);
     setState(() {
@@ -54,12 +60,10 @@ class _Home_ScreenState extends State<Home_Screen> {
       Colors.red.withOpacity(0.5),            // লাল
       Colors.green,          // সবুজ
       Colors.orange,         // কমলা
-      Colors.purple,         // বেগুনি
       Colors.teal,           // টিল
       Colors.indigo,         // গাঢ় নীল
       Colors.amber,          // অ্যাম্বার
       Colors.cyan,           // আকাশী
-      Colors.pink,           // গোলাপি
       Colors.lime,           // হালকা সবুজ
       Colors.deepOrange,     // গাঢ় কমলা
       Colors.lightGreen,     // হালকা সবুজ
@@ -84,6 +88,7 @@ class _Home_ScreenState extends State<Home_Screen> {
         title: Text("Note Pad",style: context.textTheme.titleLarge?.copyWith(color: Colors.white),),
         centerTitle: true,
         actions: [
+          IconButton(onPressed: () {  }, icon: Icon(Icons.menu),),
           IconButton(onPressed: (){Get.to<Profile_Screen>(Profile_Screen());},
               icon: Container(
                 width: 35, // ছবির প্রস্থ
@@ -93,67 +98,71 @@ class _Home_ScreenState extends State<Home_Screen> {
                   border: Border.all(color: Colors.white, width: 2.0), // বর্ডার কালার এবং পুরুত্ব
                 ),
                 child: ClipOval( // ছবি ক্লিপ করার জন্য
-                  child: Image.network(
-                    'https://scontent.fdac110-1.fna.fbcdn.net/v/t39.30808-1/421750988_913338270136654_635347076248654908_n.jpg?stp=dst-jpg_s200x200&_nc_cat=111&ccb=1-7&_nc_sid=50d2ac&_nc_ohc=lT0F270Zj6sQ7kNvgGrOmpn&_nc_ht=scontent.fdac110-1.fna&_nc_gid=AFadN_OLp_7XT6xCbiSfBjh&oh=00_AYB3F25DP5PmWCOBX8eylMQTEh_g-qz3OFNWdVjuWte0DQ&oe=66F217E6',
-                    width: 35, // ছবির প্রস্থ
-                    height: 35, // ছবির উচ্চতা
-                    fit: BoxFit.cover, // ছবি কভার ফিটিং
-                  ),
+                  child: ImagesClass.imagecoustom,
                 ),
               ),
                 //iconSize: 10,
           ),
-        ],
+    ],
         ),
       drawer: const Drawer_Screen(),
-      body: Column(
-        children: [
-          const Search_Your_Notes(),
-          Expanded(
-            child: ListView.builder(
-              itemCount: items.length,
-              itemBuilder: ( context,  index) {
+      body: RefreshIndicator(
+        onRefresh: ()=> readItemsDatabase(),
 
-                final Color backgroundColor = colors[index % colors.length];
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Search_Your_Notes(),
+              ListView.builder(
+                shrinkWrap: true,
+                primary: false,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: items.length,
+                itemBuilder: ( context,  index) {
 
-                String titletext = items[index]['title']!;
-                String firstLetter = titletext[0]; // প্রথম অক্ষর
+                  final Color backgroundColor = colors[index % colors.length];
 
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Card(
-                  color: backgroundColor,
-                  elevation: 5,
-                  child: InkWell(
-                    onTap: (){
-                      Get.to<Note_Details>(Note_Details(title: items[index]['title'],description: items[index]['description'],backgroundcolor: colors[index % colors.length],));
-                      print(items[index]['title'],);
-                      print(items[index]['description']);
-                    },
-                    child: ListTile(
-                      title: Text('${items[index]['title']}',style: context.textTheme.titleLarge?.copyWith(color: Colors.black, ),maxLines: 1, overflow: TextOverflow.ellipsis),
-                      subtitle: Text('${items[index]['description']}',style: mediumblack,maxLines: 1, overflow: TextOverflow.ellipsis),
-                      trailing: IconButton( onPressed: () {
-                        Get.to<edite_Screen>(edite_Screen());
-                        }, icon: Icon(Icons.edit),),
-                      leading: Container(
-                        padding: EdgeInsets.all(4.0), // বর্ডারের পুরুত্বের জন্য মার্জিন
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 4.0), // বর্ডার কালার এবং পুরুত্ব
+                  String titletext = items[index]['title']!;
+                  String firstLetter = titletext[0]; // প্রথম অক্ষর
+
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    color: backgroundColor,
+                    elevation: 5,
+                    child: InkWell(
+                      onTap: (){
+                        Get.to<Note_Details>(
+                          ()=> Note_Details(title: items[index]['title'],description: items[index]['description'],id: items[index]['id'],date: items[index]['date'],backgroundcolor: colors[index % colors.length],));
+                        print(items[index]['title'],);
+                        print(items[index]['description']);
+                      },
+                      child: ListTile(
+                        title: Text('${items[index]['title']}',style: context.textTheme.titleLarge?.copyWith(color: Colors.black, ),maxLines: 1, overflow: TextOverflow.ellipsis),
+                        subtitle: Text('${items[index]['description']}',style: mediumblack,maxLines: 1, overflow: TextOverflow.ellipsis),
+                        trailing: IconButton( onPressed: () {
+                          DbHelper().deleteItems(items[index]['id'], context);
+                          readItemsDatabase();
+                          }, icon: Icon(Icons.delete, color: Colors.red,),),
+                        leading: Container(
+                          padding: EdgeInsets.all(4.0), // বর্ডারের পুরুত্বের জন্য মার্জিন
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 4.0), // বর্ডার কালার এবং পুরুত্ব
+                          ),
+                          child: CircleAvatar(
+                              backgroundColor: Colors.blue,
+                              child: Center(child: Text('${firstLetter}',maxLines: 1,style: context.textTheme.titleMedium?.copyWith(color: Colors.white)))),
                         ),
-                        child: CircleAvatar(
-                            backgroundColor: Colors.blue,
-                            child: Center(child: Text('${firstLetter}',maxLines: 1,style: context.textTheme.titleMedium?.copyWith(color: Colors.white)))),
                       ),
                     ),
                   ),
-                ),
-              );
-            },
-            ),
+                );
+              },
+              ),
+            ],
           ),
-        ],
+        ),
       ),
         floatingActionButton: FloatingActionButton.extended(
           backgroundColor: Colors.white.withOpacity(0.9),

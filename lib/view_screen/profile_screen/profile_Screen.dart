@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:poly_notepad_app/constant/colors.dart';
+import 'package:poly_notepad_app/constant/image.dart';
 import 'package:poly_notepad_app/view_screen/home_screen/home_screen.dart';
 import '../../constant/text.dart';
 
@@ -53,11 +54,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                   padding: const EdgeInsets.all(20.0),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
-                      child: Image.network('https://scontent.fdac110-1.fna.fbcdn.net/v/t39.30808-1/421750988_913338270136654_635347076248654908_n.jpg?stp=dst-jpg_s200x200&_nc_cat=111&ccb=1-7&_nc_sid=50d2ac&_nc_ohc=lT0F270Zj6sQ7kNvgGrOmpn&_nc_ht=scontent.fdac110-1.fna&_nc_gid=AFadN_OLp_7XT6xCbiSfBjh&oh=00_AYB3F25DP5PmWCOBX8eylMQTEh_g-qz3OFNWdVjuWte0DQ&oe=66F217E6',
-                      height: 100,
-                        width: 100,
-                        fit: BoxFit.fill,
-                      ),
+                      child: ImagesClass.ImgeProfile,
                       //Text('T',style: context.textTheme.titleLarge?.copyWith(color: Colors.white, fontSize: 80))
                     ),
                 ),
