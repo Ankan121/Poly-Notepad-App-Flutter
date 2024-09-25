@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:poly_notepad_app/constant/colors.dart';
 import 'package:get/get.dart';
-import 'package:poly_notepad_app/view_screen/home_screen/home_screen.dart';
-
 import '../../constant/text.dart';
 import '../../db_service/db_herper.dart';
 
@@ -88,7 +86,8 @@ class _Note_DetailsState extends State<Note_Details> {
             ),
             Container(
               padding:  EdgeInsets.all(20.0),
-              height: 591.h,
+              height: MediaQuery.sizeOf(context).height,
+              // height: MediaQuery.sizeOf(context).height* 0.86,
               width: double.infinity.w,
               decoration: BoxDecoration(
                 color: widget.backgroundcolor,
@@ -107,6 +106,9 @@ class _Note_DetailsState extends State<Note_Details> {
                       minLines: 1,
                       maxLines: null,
                       controller: titleEditingController,
+                      decoration: InputDecoration(
+                        border: InputBorder.none
+                      ),
                       onSaved: (String? value) {
 
                       },
@@ -119,6 +121,10 @@ class _Note_DetailsState extends State<Note_Details> {
                       minLines: 1,
                       maxLines: null,
                       controller: descriptionEditingController,
+                      decoration: InputDecoration(
+                          border: InputBorder.none
+                      ),
+
                       onSaved: (String? value){
 
                       },
