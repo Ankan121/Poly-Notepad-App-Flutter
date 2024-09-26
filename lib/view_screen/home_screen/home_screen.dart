@@ -45,6 +45,8 @@ class _Home_ScreenState extends State<Home_Screen> {
     });
   }
 
+   String? direction = 'listview';
+
   @override
   Widget build(BuildContext context) {
 
@@ -88,7 +90,14 @@ class _Home_ScreenState extends State<Home_Screen> {
         title: Text("Note Pad",style: context.textTheme.titleLarge?.copyWith(color: Colors.white),),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () {  }, icon: Icon(Icons.menu),),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                direction = direction == "listview" ? "gridview" : "listview";
+              });
+            },
+            icon: Icon(direction == "listview" ? Icons.list : Icons.grid_view),
+          ),
           IconButton(onPressed: (){Get.to<Profile_Screen>(Profile_Screen());},
               icon: Container(
                 width: 35, // ছবির প্রস্থ
@@ -113,6 +122,76 @@ class _Home_ScreenState extends State<Home_Screen> {
           child: Column(
             children: [
               const Search_Your_Notes(),
+              direction == 'gridview'?
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // প্রতিটি সারিতে কয়টি আইটেম থাকবে
+                    crossAxisSpacing: 10.0, // গ্রিডের কলামের মধ্যে দূরত্ব
+                    mainAxisSpacing: 10.0, // সারির মধ্যে দূরত্ব
+                  ),
+                  physics: NeverScrollableScrollPhysics(), // স্ক্রলিং বন্ধ করে দেওয়া হয়েছে
+                  shrinkWrap: true, // গ্রিডের উচ্চতা এর কনটেন্ট অনুযায়ী অটো অ্যাডজাস্ট হবে
+                  itemCount: items.length, // গ্রিডের মোট আইটেম সংখ্যা
+                  itemBuilder: (context, index) {
+
+                    final Color backgroundColor = colors[index % colors.length];
+
+                    String titletext = items[index]['title']!;
+                    String firstLetter = titletext[0]; // প্রথম অক্ষর
+
+                    return InkWell(
+                      onTap: (){
+                        Get.to<Note_Details>(
+                                ()=> Note_Details(title: items[index]['title'],description: items[index]['description'],id: items[index]['id'],date: items[index]['date'],backgroundcolor: colors[index % colors.length],));
+                        print(items[index]['title'],);
+                        print(items[index]['description']);
+                      },
+
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: backgroundColor, // বিভিন্ন রঙের ব্যাকগ্রাউন্ড
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(color: Colors.white, width: 4.0), // বর্ডার কালার এবং পুরুত্ব
+                                    ),
+                                    child: CircleAvatar(
+                                        backgroundColor: Colors.blue,
+                                        child: Center(child: Text('${firstLetter}',maxLines: 1,style: context.textTheme.titleMedium?.copyWith(color: Colors.white)))),
+                                  ),
+                                  Spacer(),
+                                  IconButton( onPressed: () {
+                                    DbHelper().deleteItems(items[index]['id'], context);
+                                    readItemsDatabase();
+                                  }, icon: Icon(Icons.delete, color: Colors.red,),),
+                                ],
+                              ),
+                              Spacer(),
+                              Text('${items[index]['title']}',style: context.textTheme.titleLarge?.copyWith(color: Colors.black, ),maxLines: 1, overflow: TextOverflow.ellipsis),
+
+                              Text('${items[index]['description']}',style: mediumblack,maxLines: 1, overflow: TextOverflow.ellipsis),
+
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              )
+                  :
               ListView.builder(
                 shrinkWrap: true,
                 primary: false,
