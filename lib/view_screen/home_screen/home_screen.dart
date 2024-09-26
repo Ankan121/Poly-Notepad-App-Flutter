@@ -178,10 +178,10 @@ class _Home_ScreenState extends State<Home_Screen> {
                                   }, icon: Icon(Icons.delete, color: Colors.red,),),
                                 ],
                               ),
-                              Spacer(),
-                              Text('${items[index]['title']}',style: context.textTheme.titleLarge?.copyWith(color: Colors.black, ),maxLines: 1, overflow: TextOverflow.ellipsis),
+                              SizedBox(height: 10.h,),
+                              Text('${items[index]['title']}',style: context.textTheme.titleLarge?.copyWith(color: Colors.black, ),maxLines: 2, overflow: TextOverflow.ellipsis),
 
-                              Text('${items[index]['description']}',style: mediumblack,maxLines: 1, overflow: TextOverflow.ellipsis),
+                              Text('${items[index]['description']}',style: mediumblack,maxLines: 2, overflow: TextOverflow.ellipsis),
 
                             ],
                           ),
